@@ -1,93 +1,66 @@
-# PhysESA 预训练项目依赖
+# PhysESA 预训练项目完整依赖
+# 包含运行项目所需的所有核心和扩展依赖
 
-# 核心深度学习框架
+# ========== 核心深度学习框架 ==========
 torch>=1.12.0
 torchvision>=0.13.0
 torchaudio>=0.12.0
-
-# PyTorch 生态系统
 pytorch-lightning>=1.9.0
+
+# ========== PyTorch Geometric 生态系统 ==========
 torch-geometric>=2.2.0
 torch-scatter>=2.1.0
 torch-sparse>=0.6.0
 torch-cluster>=1.6.0
 torch-spline-conv>=1.2.0
 
-# 科学计算和数据处理
+# ========== 科学计算基础 ==========
 numpy>=1.21.0
 pandas>=1.5.0
 scipy>=1.9.0
 scikit-learn>=1.1.0
+networkx>=2.8.0
 
-# 生物信息学
+# ========== 生物信息学和化学信息学 ==========
 biopython>=1.80
 rdkit>=2022.09.1
 
-# 分子建模和化学信息学
-openmm>=7.7.0  # 可选，用于分子动力学
-mdtraj>=1.9.7  # 可选，用于轨迹分析
+# ========== 机器学习评估 ==========
+torchmetrics>=0.9.0
 
-# 可视化
+# ========== 可视化 ==========
 matplotlib>=3.5.0
 seaborn>=0.11.0
 plotly>=5.10.0
 
-# 日志和实验管理
+# ========== 实验管理和日志 ==========
 tensorboard>=2.10.0
-wandb>=0.13.0  # 可选，用于实验跟踪
+wandb>=0.13.0
 
-# 配置管理
+# ========== 配置管理 ==========
 pyyaml>=6.0
-omegaconf>=2.2.0  # 可选，更高级的配置管理
+omegaconf>=2.2.0
 
-# 评估指标
-torchmetrics>=0.9.0
-
-# 系统监控
+# ========== 系统工具 ==========
 psutil>=5.9.0
 tqdm>=4.64.0
+rich>=12.5.0
 
-# 数据序列化
-pickle5>=0.0.12  # Python < 3.8 需要
+# ========== 数据处理和存储 ==========
+h5py>=3.7.0
+tables>=3.7.0
+pyarrow>=9.0.0
 
-# 并行处理
-multiprocessing-logging>=0.3.4
-
-# 内存优化
-memory-profiler>=0.60.0  # 可选，用于内存分析
-
-# 高性能计算
-numba>=0.56.0  # 可选，JIT编译加速
-
-# 图处理
-networkx>=2.8.0
-
-# 统计分析
+# ========== 统计和数据验证 ==========
 statsmodels>=0.13.0
+pydantic>=1.10.0
 
-# 进度条和美化输出
-rich>=12.5.0  # 可选，美化命令行输出
+# ========== 性能优化 ==========
+numba>=0.56.0
+memory-profiler>=0.60.0
 
-# 数据验证
-pydantic>=1.10.0  # 可选，数据验证
+# ========== 分布式计算 ==========
+ray>=2.0.0
 
-# 文件格式支持
-h5py>=3.7.0  # HDF5文件支持
-tables>=3.7.0  # PyTables
-
-# 高性能数据结构
-pyarrow>=9.0.0  # 可选，高性能列式数据
-
-# 分布式计算支持（可选）
-ray>=2.0.0  # 可选，分布式计算
-horovod>=0.26.0  # 可选，分布式训练
-
-# GPU 监控（可选）
-nvidia-ml-py3>=7.352.0  # 可选，GPU监控
-
-# 依赖说明：
-# 1. torch, torch-geometric 是核心依赖
-# 2. biopython, rdkit 用于分子数据处理
-# 3. pytorch-lightning 用于训练管理
-# 4. scikit-learn 用于评估指标
-# 5. 标记为"可选"的包可以根据需要安装
+# ========== GPU监控 ==========
+nvidia-ml-py3>=7.352.0
