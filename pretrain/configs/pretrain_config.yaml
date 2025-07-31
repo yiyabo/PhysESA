@@ -1,0 +1,82 @@
+# PhysESA 预训练配置文件
+
+# 实验设置
+experiment:
+  name: "physesa_binding_site_pretrain_v1"
+  description: "PhysESA预训练实验 - v2020-other-PL数据集上的结合位点识别"
+  seed: 42
+
+# 数据配置
+data:
+  processed_dir: "/path/to/processed/v2020/data"  # 需要用户指定
+  batch_size: 16  # 根据A100-40GB显存调整
+  num_workers: 16  # 利用高性能CPU
+  
+# 模型配置
+model:
+  # ESA架构配置
+  esa_config:
+    # 通用配置
+    graph_dim: 512
+    num_heads: 8
+    num_inds: 32
+    
+    # 原子级编码器配置
+    atomic_encoder_config:
+      num_layers: 6
+      dropout: 0.1
+      use_bn: true
+      linear_output_size: 512
+    
+    # 粗粒度编码器配置  
+    coarse_encoder_config:
+      num_layers: 4
+      dropout: 0.1
+      use_bn: true
+      linear_output_size: 512
+  
+  # 特征维度
+  feature_dims:
+    node_dim: 74  # 原子特征维度
+    edge_dim: 16  # 边特征维度
+  
+  # 优化器参数
+  learning_rate: 1e-4
+  weight_decay: 1e-5
+
+# 训练配置
+training:
+  max_epochs: 100
+  gpus: 8  # 使用所有8张A100
+  strategy: "ddp"  # 分布式数据并行
+  precision: 16  # 混合精度训练节省显存
+  
+  # 验证和检查点
+  val_check_interval: 0.25  # 每1/4个epoch验证一次
+  gradient_clip_val: 1.0
+  accumulate_grad_batches: 1  # 不需要梯度累积，显存够用
+  
+  # 早停配置
+  early_stopping_patience: 15
+
+# 日志和检查点
+logging:
+  log_dir: "./logs"
+  checkpoint_dir: "./checkpoints"
+  log_every_n_steps: 100
+
+# WandB配置（可选）
+wandb:
+  enabled: false
+  project: "physesa-pretraining"
+  tags: 
+    - "pretraining"
+    - "binding-site"
+    - "v2020-other-PL"
+
+# 硬件配置说明
+hardware:
+  memory: "1000GB"
+  gpus: "8x A100-40GB"
+  cpu: "高性能CPU"
+  note: "放开跑，无需考虑计算开销"
