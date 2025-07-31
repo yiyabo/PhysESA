@@ -19,7 +19,9 @@ import argparse
 import logging
 
 # 导入项目模块
-sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(project_root)
+sys.path.append(os.path.join(project_root, 'model'))  # 添加model目录以支持utils导入
 from pretrain.models.physesa_binding_site import PhysESABindingSite
 
 class PretrainGraphDataset(Dataset):

@@ -20,7 +20,9 @@ import argparse
 import json
 
 # 导入项目模块
-sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(project_root)
+sys.path.append(os.path.join(project_root, 'model'))  # 添加model目录以支持utils导入
 from pretrain.models.physesa_binding_site import PhysESABindingSite
 from pretrain.data_adapters.pretrain_data_adapter import PretrainDatasetManager
 from pretrain.data_adapters.binding_site_extractor import add_binding_site_labels_to_graph

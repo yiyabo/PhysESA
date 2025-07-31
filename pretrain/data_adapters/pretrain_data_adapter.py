@@ -12,7 +12,9 @@ from rdkit import Chem
 import sys
 
 # 添加项目根目录到路径
-sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(project_root)
+sys.path.append(os.path.join(project_root, 'model'))  # 添加model目录以支持utils导入
 from molecular_graph import MultiScaleGraphBuilder
 
 class PretrainDataAdapter:
