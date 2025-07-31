@@ -1,0 +1,83 @@
+# PhysESA 预训练配置文件 - 2x 4090D 版本
+
+# 实验设置
+experiment:
+  name: "physesa_binding_site_pretrain_4090_v1"
+  description: "PhysESA预训练实验 - 2张4090D GPU版本"
+  seed: 42
+
+# 数据配置
+data:
+  processed_dir: "/path/to/processed/v2020/data"  # 需要用户指定
+  batch_size: 8  # 4090D 24GB显存，减小batch size
+  num_workers: 8  # 根据CPU核心数调整
+  
+# 模型配置
+model:
+  # ESA架构配置
+  esa_config:
+    # 通用配置
+    graph_dim: 256  # 减小模型维度适配显存
+    num_heads: 8
+    num_inds: 16  # 减小inducing points数量
+    
+    # 原子级编码器配置
+    atomic_encoder_config:
+      num_layers: 4  # 减少层数
+      dropout: 0.1
+      use_bn: true
+      linear_output_size: 256
+    
+    # 粗粒度编码器配置  
+    coarse_encoder_config:
+      num_layers: 3  # 减少层数
+      dropout: 0.1
+      use_bn: true
+      linear_output_size: 256
+  
+  # 特征维度
+  feature_dims:
+    node_dim: 74  # 原子特征维度
+    edge_dim: 16  # 边特征维度
+  
+  # 优化器参数
+  learning_rate: 1e-4
+  weight_decay: 1e-5
+
+# 训练配置
+training:
+  max_epochs: 150  # 增加epoch数补偿较小的模型
+  gpus: 2  # 使用2张4090D
+  strategy: "ddp"  # 分布式数据并行
+  precision: 16  # 混合精度训练节省显存
+  
+  # 验证和检查点
+  val_check_interval: 0.5  # 每1/2个epoch验证一次
+  gradient_clip_val: 1.0
+  accumulate_grad_batches: 2  # 梯度累积模拟更大batch size
+  
+  # 早停配置
+  early_stopping_patience: 20
+
+# 日志和检查点
+logging:
+  log_dir: "./logs"
+  checkpoint_dir: "./checkpoints"
+  log_every_n_steps: 50  # 更频繁的日志记录
+
+# WandB配置（可选）
+wandb:
+  enabled: false
+  project: "physesa-pretraining-4090"
+  tags: 
+    - "pretraining"
+    - "binding-site"
+    - "v2020-other-PL"
+    - "4090D"
+
+# 硬件配置说明
+hardware:
+  memory: "系统内存"
+  gpus: "2x RTX 4090D 24GB"
+  cpu: "根据实际配置调整"
+  note: "针对4090D优化的配置"
