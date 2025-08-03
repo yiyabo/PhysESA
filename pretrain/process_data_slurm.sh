@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --gpus=0
+#SBATCH --gpus=1
 #SBATCH -p vip_gpu_01
 #SBATCH --job-name=physesa_data_process
 #SBATCH --ntasks=1
