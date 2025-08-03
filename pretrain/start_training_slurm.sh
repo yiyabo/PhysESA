@@ -5,8 +5,7 @@
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=12
 #SBATCH --time=24:00:00
-#SBATCH --output=logs/training_%j.out
-#SBATCH --error=logs/training_%j.err
+# 移除输出重定向，使用默认输出
 
 echo "=========================================="
 echo "PhysESA 预训练任务 - SLURM"
@@ -27,8 +26,7 @@ DATA_DIR="./data_process"
 OUTPUT_DIR="./training_output"
 CONFIG_FILE="configs/pretrain_config_4090.yaml"
 
-# 创建必要目录
-mkdir -p logs
+# 创建输出目录
 mkdir -p "$OUTPUT_DIR"
 
 # 检查数据文件是否存在

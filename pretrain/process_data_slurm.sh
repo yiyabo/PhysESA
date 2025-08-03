@@ -5,8 +5,7 @@
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=6
 #SBATCH --time=6:00:00
-#SBATCH --output=logs/data_process_%j.out
-#SBATCH --error=logs/data_process_%j.err
+# 移除输出重定向，使用默认输出
 
 echo "=========================================="
 echo "PhysESA 数据预处理任务 - SLURM"
@@ -26,8 +25,7 @@ conda activate esa
 DATASET_ROOT="/home/dalhxwlyjsuo/criait_zhaozc/xinxiangwang"
 OUTPUT_DIR="./data_process"
 
-# 创建日志目录
-mkdir -p logs
+# 不需要手动创建日志目录，使用SLURM默认输出
 
 # 检查数据集是否存在
 echo "检查数据集..."
