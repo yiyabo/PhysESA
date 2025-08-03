@@ -8,9 +8,9 @@ import sys
 import torch
 import pickle
 import yaml
-import pytorch_lightning as pl
-from pytorch_lightning.callbacks import ModelCheckpoint, EarlyStopping, LearningRateMonitor
-from pytorch_lightning.loggers import TensorBoardLogger, WandbLogger
+# import pytorch_lightning as pl
+# from pytorch_lightning.callbacks import ModelCheckpoint, EarlyStopping, LearningRateMonitor
+# from pytorch_lightning.loggers import TensorBoardLogger, WandbLogger
 from torch_geometric.loader import DataLoader
 from torch.utils.data import Dataset
 from pathlib import Path
