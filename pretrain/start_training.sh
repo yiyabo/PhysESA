@@ -8,8 +8,8 @@ echo "PhysESA 预训练启动脚本"
 echo "=========================================="
 
 # 设置路径
-DATA_DIR="/home/jovyan/shared/GuanSang/datasets/PhysESA/pretrain/data_process"
-OUTPUT_DIR="/home/jovyan/shared/GuanSang/datasets/PhysESA/pretrain/training_output"
+DATA_DIR="./data_process"
+OUTPUT_DIR="./training_output"
 CONFIG_FILE="configs/pretrain_config_4090.yaml"
 
 # 检查数据文件是否存在
