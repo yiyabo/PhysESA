@@ -4,7 +4,6 @@
 #SBATCH --job-name=physesa_pretrain
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=12
-#SBATCH --mem=64G
 #SBATCH --time=24:00:00
 #SBATCH --output=logs/training_%j.out
 #SBATCH --error=logs/training_%j.err
