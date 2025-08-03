@@ -23,7 +23,7 @@ import time
 project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.append(project_root)
 sys.path.append(os.path.join(project_root, 'model'))
-from pretrain.models.physesa_binding_site import PhysESABindingSite
+# 不导入有问题的模块，直接在这里实现
 
 class SimpleGraphDataset(Dataset):
     """简单图数据集"""
@@ -72,8 +72,6 @@ class SimpleTrainer:
         
     def create_model(self):
         """创建模型"""
-        from pretrain.models.physesa_binding_site import PhysESABindingSite
-        
         model_config = self.config['model']
         
         # 创建简化版本，不使用PyTorch Lightning
