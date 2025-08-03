@@ -3,8 +3,8 @@
 #SBATCH -p vip_gpu_01
 #SBATCH --job-name=physesa_data_process
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=16
-#SBATCH --mem=64G
+#SBATCH --cpus-per-task=6
+#SBATCH --mem=32G
 #SBATCH --time=6:00:00
 #SBATCH --output=logs/data_process_%j.out
 #SBATCH --error=logs/data_process_%j.err
